@@ -9,6 +9,8 @@ class onMessage(commands.Cog):
     async def on_command_error(self, ctx,  error):
         if isinstance(error, commands.CheckFailure):
             await ctx.reply("Insufficient permissions.")
+        else:
+            await ctx.reply(f"An error occurred: {error}")
 
 async def setup(client):
     await client.add_cog(onMessage(client))

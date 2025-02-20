@@ -1,14 +1,14 @@
 import discord
 from discord.ext import commands
 import re
+from datetime import timedelta
 
 def parseDuration(duration):
     match = re.match(r"(\d+)([dwmos])", duration)
     if not match:
-        return 0
+        return timedelta(0)
     value = int(match.group(1))
-    unit = match.group(value)
-
+    unit = match.group(2)
 
     refs = {
         "d": 86400,
@@ -17,4 +17,16 @@ def parseDuration(duration):
         "o": 31536000
     }
 
-    return value * refs[unit]
+    return timedelta(seconds=value * refs[unit])
+
+
+def flagParsers(flag):
+    flags = {
+        "hypesquad_balance": "HypeSquad Balance",
+        "active_developer": "Active Developer",
+        "hypesquad_bravery": "HypeSquad Bravery",
+        "hypesquad_brilliance": "HypeSquad Brilliance",
+        
+    }
+
+    return flags[flag]
