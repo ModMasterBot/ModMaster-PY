@@ -6,10 +6,6 @@ class onMessage(commands.Cog):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_message(self, message):
-        print(message)
-
-    @commands.Cog.listener()
     async def on_command_error(self, ctx,  error):
         if isinstance(error, commands.CheckFailure):
             await ctx.reply("Insufficient permissions.")

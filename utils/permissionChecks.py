@@ -1,19 +1,22 @@
 from discord.ext import commands
 import os
 import json
-
-def loadConfig():
-    with open("config.json", "r") as configFile:
-        return json.load(configFile)
+from utils.loadConfig import loadConfig
     
 def staffCommandCheck():
     async def predicate(ctx):
         config = loadConfig()
-        print(ctx.author.roles)
-        print(config['staffRoles'])
-        for role in ctx.author.roles:
+        guild = ctx.bot.get_guild(config['primaryGuild'])
+        target = guild.get_member(ctx.author.id)
+        for role in target.roles:
             if role.id in config['staffRoles']:
-                print(role.id)
                 return True
-            return False
+        return False
+    return commands.check(predicate)
+
+def guildOwnerCheck():
+    async def predicate(ctx):
+        if ctx.author.id == ctx.guild.owner_id:
+            return True
+        return False
     return commands.check(predicate)
