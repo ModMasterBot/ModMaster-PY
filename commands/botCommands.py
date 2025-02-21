@@ -16,7 +16,7 @@ class TestingCommand(commands.Cog):
         await ctx.reply("Sync complete.")
 
         config = loadConfig()
-        guild = ctx.client.get_guild(config['primaryGuild'])
+        guild = self.get_guild(config['primaryGuild'])
         channel = guild.get_channel(config['bot-logs'])
         await channel.send(f"{ctx.author.mention} has synced the commands.")
 
@@ -29,7 +29,11 @@ class TestingCommand(commands.Cog):
     @staffCommandCheck()
     async def test(self, ctx):
         await ctx.reply("Test command successful.")
-        #
+        
+    @commands.command(name = "restart")
+    @staffCommandCheck()
+    async def restart(self, ctx):
+        exit()
 
 
 async def setup(client):
