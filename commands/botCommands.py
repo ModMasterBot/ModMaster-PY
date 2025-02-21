@@ -20,6 +20,11 @@ class TestingCommand(commands.Cog):
         channel = guild.get_channel(config['bot-logs'])
         await channel.send(f"{ctx.author.mention} has synced the commands.")
 
+    @commands.command(name = "error")
+    @staffCommandCheck()
+    async def error(self, ctx):
+        await ctx.reply(1/0)
+
 
 async def setup(client):
     await client.add_cog(TestingCommand(client))    
