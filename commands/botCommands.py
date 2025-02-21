@@ -25,6 +25,11 @@ class TestingCommand(commands.Cog):
     async def error(self, ctx):
         await ctx.reply(1/0)
 
+    @commands.command(name = "test")
+    @staffCommandCheck()
+    async def test(self, ctx):
+        await ctx.reply("Test command successful.")
+
 
 async def setup(client):
     await client.add_cog(TestingCommand(client))    
