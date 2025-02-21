@@ -7,7 +7,7 @@ dotenv.load_dotenv()
 
 class Client(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix=";", intents=discord.Intents.all())
+        super().__init__(command_prefix="!", intents=discord.Intents.all())
         self.config = loadConfig()
 
     async def setup_hook(self) -> None:
