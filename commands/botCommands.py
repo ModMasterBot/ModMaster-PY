@@ -33,8 +33,8 @@ class TestingCommand(commands.Cog):
     @commands.command(name = "restart")
     @staffCommandCheck()
     async def restart(self, ctx):
+        msg = await ctx.reply("<:Issues:1342067840177537024> Stopping the bot...")
         exit()
-
 
 async def setup(client):
     await client.add_cog(TestingCommand(client))    

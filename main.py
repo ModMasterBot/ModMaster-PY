@@ -23,7 +23,6 @@ class Client(commands.Bot):
                 await self.load_extension(f'events.{file[:-3]}')
 
     async def on_ready(self):
-        config = loadConfig()
         guild = self.get_guild(config['primaryGuild'])
         channel = guild.get_channel(config['bot-logs'])
         await channel.send(f"<:Online:1342066679638921266> ModMaster started up successfully.")
