@@ -16,7 +16,7 @@ class onMessage(commands.Cog):
             config = loadConfig()
             guild = self.client.get_guild(config["primaryGuild"])
             channel = guild.get_channel(config["error-logs"])
-            await channel.send(embed = discord.Embed(title = "Error", description=f"An error occurred in {ctx.command.name if ctx.command.name is not None else "unknown command"}:\n```{error}```", color = discord.Color.red()))
+            await channel.send(embed = discord.Embed(title = "Error", description=f"An error occurred in {ctx.command.name if ctx.command.name is not None else 'unknown command'}:\n```{error}```", color = discord.Color.red()))
         
 
 async def setup(client):
